@@ -29,7 +29,7 @@ function App() {
     e.preventDefault();
     console.log("hello");
     try {
-        const response = await axios.post('http://localhost:5000', {
+        const response = await axios.post('https://diabetes-detection-system.onrender.com', {
             features: Object.values(features).map(Number)
         });
         const prediction = response.data.prediction;
