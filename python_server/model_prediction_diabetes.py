@@ -3,6 +3,7 @@ from flask_cors import CORS
 import joblib
 import numpy as np
 import pandas as pd
+from waitress import serve
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -16,7 +17,7 @@ scaler = joblib.load(scaler_path)
 
 @app.route('/')
 def HelloWorld():
-    return "Hello World"
+    return "Hello World Waitress"
 
 
 @app.route('/', methods=['POST'])
@@ -43,5 +44,5 @@ def predict():
         return jsonify({'prediction': "Diabetic"})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    serve(app,host='0.0.0.0', port=5000,threads=2)
 
